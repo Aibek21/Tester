@@ -1,7 +1,11 @@
+# -*- coding: utf-8 -*-
+
 from django.http import HttpResponse
 from .models import Question
 from .models import Answer
 from .models import Task
+from .models import Variant
+
 import re
 from django.conf import settings
 import os
@@ -9,11 +13,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 
 def index(request):
-    return render(request, 'testapp/index.html')
+    variants = Variant.objects.all()
+    return render(request, 'testapp/index.html', {'variants': variants})
 
 
 def clear(request):
     Task.objects.all().delete()
+    Variant.objects.all().delete()
     Question.objects.all().delete()
     Answer.objects.all().delete()
     return HttpResponse("Clear")
@@ -57,4 +63,18 @@ def parse(request):
 
             if task.question is not None and task.options.count() > 0:
                 task.save()
+
+    questionList = Question.objects.all()
+    counter = 0
+    variantNo = 1
+    while counter < len(questionList):
+        variant = Variant()
+        variant.name = "Variant {}".format(variantNo)
+        variant.save()
+        for j in xrange(0, 20, 1):
+            variant.questions.add(questionList[counter])
+            counter += 1
+        variant.save()
+        variantNo += 1
+
     return HttpResponse("Parse")
