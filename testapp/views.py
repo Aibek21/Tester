@@ -5,6 +5,7 @@ from .models import Question
 from .models import Answer
 from .models import Task
 from .models import Variant
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 import re
 from django.conf import settings
@@ -17,9 +18,27 @@ def index(request):
     return render(request, 'testapp/index.html', {'variants': variants})
 
 
+def variant_detail(request, pk):
+    variant = get_object_or_404(Variant, pk=pk)
+    page = request.GET.get('page', 1)
+
+    taskList = variant.tasks.all()
+    paginator = Paginator(taskList, 5)
+
+    try:
+        tasks = paginator.page(page)
+    except PageNotAnInteger:
+        tasks = paginator.page(1)
+    except EmptyPage:
+        tasks = paginator.page(paginator.num_pages)
+
+    return render(request, 'testapp/variant_detail.html',
+                  {'variant': variant.name, 'tasks': tasks, 'paginator': paginator})
+
+
 def clear(request):
-    Task.objects.all().delete()
     Variant.objects.all().delete()
+    Task.objects.all().delete()
     Question.objects.all().delete()
     Answer.objects.all().delete()
     return HttpResponse("Clear")
@@ -64,15 +83,15 @@ def parse(request):
             if task.question is not None and task.options.count() > 0:
                 task.save()
 
-    questionList = Question.objects.all()
+    tasks = Task.objects.all()
     counter = 0
     variantNo = 1
-    while counter < len(questionList):
+    while counter < len(tasks):
         variant = Variant()
         variant.name = "Variant {}".format(variantNo)
         variant.save()
         for j in xrange(0, 20, 1):
-            variant.questions.add(questionList[counter])
+            variant.tasks.add(tasks[counter])
             counter += 1
         variant.save()
         variantNo += 1

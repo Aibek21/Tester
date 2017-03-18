@@ -12,15 +12,19 @@
 </head>
 <body>
 
-<h1>Index</h1>
+<h1>Tester</h1>
 
-{% block content%}
+
+<div class="post">
     {% for variant in variants %}
-        <div class="post">
-            <p>{{ variant.name }}</p>
-        </div>
-    {% endfor %}
-{% endblock %}
+    <p><a href="{% url 'variant_detail' pk=variant.pk %}">{{ variant.name }}</a></p>
 
+    {% if forloop.counter|divisibleby:10 %}
+</div>
+<div class="post">
+    {% endif %}
+    {% endfor %}
+</div>
 </body>
+
 </html>

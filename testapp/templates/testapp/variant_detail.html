@@ -1,0 +1,58 @@
+{% load staticfiles %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<h1>{{ variant }}</h1>
+{% for task in tasks %}
+<div class="task">
+    <p class="question">{{ forloop.counter0|add:tasks.start_index }}) {{ task.question.text }}</p>
+
+
+    {% for option in task.options.all %}
+    <label>
+        {% if task.answers.all|length > 1 %}
+        <input type="checkbox" name="{{task.pk}}_option">
+        {% else %}
+        <input type="radio" name="{{task.pk}}_option">
+        {% endif %}
+
+        {{ option.text }}
+    </label>
+    <br>
+    {% endfor %}
+
+
+</div>
+{% endfor %}
+
+{% if tasks.has_other_pages %}
+<ul class="pagination">
+    {% if tasks.has_previous %}
+    <li><a href="?page={{ tasks.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+    <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in tasks.paginator.page_range %}
+    {% if tasks.number == i %}
+    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+    {% else %}
+    <li><a href="?page={{ i }}">{{ i }}</a></li>
+    {% endif %}
+    {% endfor %}
+    {% if tasks.has_next %}
+    <li><a href="?page={{ tasks.next_page_number }}">&raquo;</a></li>
+    {% else %}
+    <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+</ul>
+{% endif %}
+</body>
+</html>

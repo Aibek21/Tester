@@ -28,7 +28,7 @@ class Task(models.Model):
 
 class Variant(models.Model):
     name = models.CharField(max_length=140, default='Вариант')
-    questions = models.ManyToManyField(Question, blank=True, null=True)
+    tasks = models.ManyToManyField(Task, blank=True, null=True)
 
     def __str__(self):
         return self.name
