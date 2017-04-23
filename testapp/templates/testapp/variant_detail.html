@@ -10,49 +10,73 @@
 </head>
 <body>
 
-<h1>{{ variant }}</h1>
-{% for task in tasks %}
-<div class="task">
-    <p class="question">{{ forloop.counter0|add:tasks.start_index }}) {{ task.question.text }}</p>
+<h1>{{ variant.name }}</h1>
+
+<form action="{% url 'result' %}" method="post">
+
+    {% csrf_token %}
+    <input type="hidden" name="pk" value="{{variant.pk}}">
+    <div class="tab-content">
+        {% for task in tasks %}
+            {% if forloop.counter0|divisibleby:5 %}
+                {% if forloop.counter0 != 0 %}
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="{% widthratio forloop.counter0 5 1 %}_panel">
+                {% else %}
+                    <div role="tabpanel" class="tab-pane active" id="{% widthratio forloop.counter0 5 1 %}_panel">
+
+                {% endif %}
+            {% endif %}
+            <p class="question">{{ forloop.counter }}) {{ task.question.text }}</p>
+
+            {% for option in task.options.all %}
+                <label>
+                    {% if task.answers|length > 1 %}
+                        <input type="checkbox" name="{{task.pk}}" class="my_check" value="{{ option.pk }}">
+                    {% else %}
+                        <input type="radio" name="{{task.pk}}" class="my_radio" value="{{ option.pk }}">
+                    {% endif %}
+                    {{ option.text }}
+                </label>
+                <br>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    </div>
+    <input class="pull-right btn btn-success" type="submit" value="Завершить тест"/>
+</form>
 
 
-    {% for option in task.options.all %}
-    <label>
-        {% if task.answers.all|length > 1 %}
-        <input type="checkbox" name="{{task.pk}}_option">
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        {% with pageid=1 %}
+        {% for task in tasks %}
+        {% if forloop.counter0|divisibleby:5 %}
+        {% if forloop.counter0 == 0 %}
+        <li role="presentation" class="active"><a href="#{% widthratio forloop.counter0 5 1 %}_panel"
+                                                  aria-controls="{% widthratio forloop.counter0 5 1 %}_panel" role="tab"
+                                                  data-toggle="tab">{% widthratio forloop.counter0 5 1 %}</a></li>
         {% else %}
-        <input type="radio" name="{{task.pk}}_option">
+        <li role="presentation"><a href="#{% widthratio forloop.counter0 5 1 %}_panel"
+                                   aria-controls="{% widthratio forloop.counter0 5 1 %}_panel" role="tab"
+                                   data-toggle="tab">{% widthratio forloop.counter0 5 1 %}</a></li>
+        {% endif %}
         {% endif %}
 
-        {{ option.text }}
-    </label>
-    <br>
-    {% endfor %}
+        {% endfor %}
+        {% endwith %}
 
+    </ul>
 
 </div>
-{% endfor %}
 
-{% if tasks.has_other_pages %}
-<ul class="pagination">
-    {% if tasks.has_previous %}
-    <li><a href="?page={{ tasks.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-    <li class="disabled"><span>&laquo;</span></li>
-    {% endif %}
-    {% for i in tasks.paginator.page_range %}
-    {% if tasks.number == i %}
-    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-    {% else %}
-    <li><a href="?page={{ i }}">{{ i }}</a></li>
-    {% endif %}
-    {% endfor %}
-    {% if tasks.has_next %}
-    <li><a href="?page={{ tasks.next_page_number }}">&raquo;</a></li>
-    {% else %}
-    <li class="disabled"><span>&raquo;</span></li>
-    {% endif %}
-</ul>
-{% endif %}
+<script
+        src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script src="{% static 'js/app.js' %}"></script>
 </body>
 </html>

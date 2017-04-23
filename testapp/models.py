@@ -7,28 +7,34 @@ class Question(models.Model):
     text = models.TextField()
 
     def __str__(self):
-        return self.text.encode('utf-8', errors='replace')
+        # return str(self.text).encode('utf-8', errors='replace')
+        return self.text
 
 
 class Answer(models.Model):
     text = models.TextField()
-
+    isAnswer = models.BooleanField(default=False)
+    userAnswer = False
     def __str__(self):
-        return self.text.encode('utf-8', errors='replace')
+        # return str(self.text).encode('utf-8', errors='replace')
+        return self.text
+
 
 
 class Task(models.Model):
     question = models.ForeignKey(Question, blank=True, null=True)
     options = models.ManyToManyField(Answer, blank=True, related_name='options')
-    answers = models.ManyToManyField(Answer, blank=True, related_name='answers')
+    # answers = models.ManyToManyField(Answer, blank=True, related_name='answers')
 
     def __str__(self):
-        return self.question.text.encode('utf-8', errors='replace')
+        # return str(self.question.text).encode('utf-8', errors='replace')
+        return self.question.text
+
 
 
 class Variant(models.Model):
     name = models.CharField(max_length=140, default='Вариант')
-    tasks = models.ManyToManyField(Task, blank=True, null=True)
+    tasks = models.ManyToManyField(Task, blank=True)
 
     def __str__(self):
         return self.name

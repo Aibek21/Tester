@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-
 from django.http import HttpResponse
-from .models import Question
-from .models import Answer
-from .models import Task
-from .models import Variant
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+from .models import Question, Answer, Task, Variant
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 import re
@@ -14,26 +13,41 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 
 def index(request):
-    variants = Variant.objects.all()
+    variants = Variant.objects.values('pk', 'name')
     return render(request, 'testapp/index.html', {'variants': variants})
 
 
 def variant_detail(request, pk):
     variant = get_object_or_404(Variant, pk=pk)
-    page = request.GET.get('page', 1)
-
     taskList = variant.tasks.all()
-    paginator = Paginator(taskList, 5)
-
-    try:
-        tasks = paginator.page(page)
-    except PageNotAnInteger:
-        tasks = paginator.page(1)
-    except EmptyPage:
-        tasks = paginator.page(paginator.num_pages)
 
     return render(request, 'testapp/variant_detail.html',
-                  {'variant': variant.name, 'tasks': tasks, 'paginator': paginator})
+                  {'variant': variant, 'tasks': taskList, })
+
+
+def test_result(request):
+   
+    pp = request.POST;
+    pk = request.POST.get("pk", "");
+    variant = get_object_or_404(Variant, pk=pk)
+
+
+    taskList = []
+    answerList = dict()
+
+    aa = None
+    for task in variant.tasks.all():
+        if str(task.pk) in pp:
+            answerList[task.pk] = []
+            answerList[task.pk] = pp.getlist(str(task.pk))
+        else
+
+        taskList.append(task)
+
+
+    return render(request, 'testapp/result.html',
+                  {'variant': variant.name, 'result': taskList,'answerList': answerList})
+
 
 
 def clear(request):
@@ -68,16 +82,16 @@ def parse(request):
             options_str = re.findall('\*[^!].+', t)
             for o in options_str:
                 ans = Answer()
+                
                 if '*+' not in o:
-                    o = re.sub(r'\*\+?(\s+)?', '', o)
-                    ans.text = o
-                    ans.save()
+                    ans.isAnswer = False
                 else:
-                    o = re.sub(r'\*\+?(\s+)?', '', o)
-                    ans.text = o
-                    ans.save()
-                    task.answers.add(ans)
+                    ans.isAnswer = True
 
+                o = re.sub(r'\*\+?(\s+)?', '', o)
+                ans.text = o
+                ans.save()
+                # task.answers.add(ans)
                 task.options.add(ans)
 
             if task.question is not None and task.options.count() > 0:
@@ -90,10 +104,11 @@ def parse(request):
         variant = Variant()
         variant.name = "Variant {}".format(variantNo)
         variant.save()
-        for j in xrange(0, 20, 1):
+        for j in range(0, 20, 1):
             variant.tasks.add(tasks[counter])
             counter += 1
         variant.save()
         variantNo += 1
 
     return HttpResponse("Parse")
+

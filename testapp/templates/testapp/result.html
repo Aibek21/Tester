@@ -1,0 +1,81 @@
+{% load test_extras %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+	<title></title>
+</head>
+<body>
+<h1>{{ variant }}</h1>
+
+ <div class="tab-content">
+        {% for task in result %}
+            {% if forloop.counter0|divisibleby:5 %}
+                {% if forloop.counter0 != 0 %}
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="{% widthratio forloop.counter0 5 1 %}_panel">
+                {% else %}
+                    <div role="tabpanel" class="tab-pane active" id="{% widthratio forloop.counter0 5 1 %}_panel">
+
+                {% endif %}
+            {% endif %}
+            <p class="question">{{ forloop.counter }}) {{ task }}</p>
+
+			<ul>
+	            {% for option in task.options.all %}
+	                {% if option.isAnswer and option.pk|to_string in answerList|get_item:task.pk%}
+						<li class="custom-bullet-ok">{{ option }}</li>
+					{% elif option.isAnswer %}
+						<li style="color: blue">{{ option }}</li>
+					{% elif option.pk|to_string in answerList|get_item:task.pk  %}
+						<li  class="custom-bullet-mistake">{{ option }}</li>
+					{% else %}
+						<li>{{ option }}</li>
+					{% endif %}
+	            {% endfor %}
+            </ul>
+        {% endfor %}
+    </div>
+    </div>
+
+
+
+
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        {% with pageid=1 %}
+        	{% for task in result %}
+        		{% if forloop.counter0|divisibleby:5 %}
+        			{% if forloop.counter0 == 0 %}
+        				<li role="presentation" class="active"><a href="#{% widthratio forloop.counter0 5 1 %}_panel"
+                                                  aria-controls="{% widthratio forloop.counter0 5 1 %}_panel" role="tab"
+                                                  data-toggle="tab">{% widthratio forloop.counter0 5 1 %}</a></li>
+       				{% else %}
+       					 <li role="presentation"><a href="#{% widthratio forloop.counter0 5 1 %}_panel"
+                                   aria-controls="{% widthratio forloop.counter0 5 1 %}_panel" role="tab"
+                                   data-toggle="tab">{% widthratio forloop.counter0 5 1 %}</a></li>
+        			{% endif %}
+        		{% endif %}
+
+        	{% endfor %}
+        {% endwith %}
+
+    </ul>
+
+</div>
+
+<script
+        src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
+</html>
