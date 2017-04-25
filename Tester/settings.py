@@ -25,7 +25,9 @@ SECRET_KEY = 'zfh##6py_z-^v5)we3#8_xqqnx4+t6k1^@7^*k^0htw=u6#l+w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+'aibek21.pythonanywhere.com'
+]
 
 REST_FRAMEWORK = {
     'PAGE_SIZE': 10
