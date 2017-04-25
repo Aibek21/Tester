@@ -16,13 +16,14 @@ class QuestionSerializer(serializers.Serializer):
 class AnswerSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     text = serializers.CharField()
+    isAnswer = serializers.BooleanField(default=False)
+
 
 
 class TaskSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     question = QuestionSerializer()
     options = AnswerSerializer(many=True)
-    answers = AnswerSerializer(many=True)
 
 
 class VariantListSerializer(serializers.Serializer):

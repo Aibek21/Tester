@@ -36,17 +36,35 @@ def test_result(request):
     answerList = dict()
 
     aa = None
+    correct = 0
     for task in variant.tasks.all():
         if str(task.pk) in pp:
             answerList[task.pk] = []
             answerList[task.pk] = pp.getlist(str(task.pk))
-        else
-
+            for item in answerList[task.pk]:
+                a=1
         taskList.append(task)
+
+    for task in variant.tasks.all():
+        answer_count = 0
+        correct_count = 0
+        for option in task.options.all():
+            if option.isAnswer:
+                answer_count+=1
+                if task.pk in answerList:
+                    for item in answerList[task.pk]:
+                        if str(option.pk)==item:
+                            correct_count+=1
+        if task.pk in answerList and correct_count==len(answerList[task.pk]) and answer_count==correct_count:
+            correct+=1        
 
 
     return render(request, 'testapp/result.html',
-                  {'variant': variant.name, 'result': taskList,'answerList': answerList})
+                  {'total':len(taskList), 
+                  'correct': correct,
+                  'variant': variant.name, 
+                  'result': taskList,
+                  'answerList': answerList})
 
 
 
