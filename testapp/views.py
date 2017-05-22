@@ -98,6 +98,7 @@ def parse(request):
 
             # options
             options_str = re.findall('\*[^!].+', t)
+            answer_count = 0
             for o in options_str:
                 ans = Answer()
                 
@@ -105,13 +106,14 @@ def parse(request):
                     ans.isAnswer = False
                 else:
                     ans.isAnswer = True
+                    answer_count+=1
 
                 o = re.sub(r'\*\+?(\s+)?', '', o)
                 ans.text = o
                 ans.save()
                 # task.answers.add(ans)
                 task.options.add(ans)
-
+            task.answer_count = answer_count
             if task.question is not None and task.options.count() > 0:
                 task.save()
 
@@ -122,9 +124,11 @@ def parse(request):
         variant = Variant()
         variant.name = "Variant {}".format(variantNo)
         variant.save()
-        for j in range(0, 20, 1):
-            variant.tasks.add(tasks[counter])
-            counter += 1
+        for j in range(0, 40, 1):
+            if counter < len(tasks):
+                variant.tasks.add(tasks[counter])
+                counter += 1
+
         variant.save()
         variantNo += 1
 

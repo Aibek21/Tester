@@ -11,8 +11,10 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -26,7 +28,7 @@ SECRET_KEY = 'zfh##6py_z-^v5)we3#8_xqqnx4+t6k1^@7^*k^0htw=u6#l+w'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-'aibek21.pythonanywhere.com'
+    'aibek21.pythonanywhere.com'
 ]
 
 REST_FRAMEWORK = {

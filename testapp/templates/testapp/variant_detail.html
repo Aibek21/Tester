@@ -28,10 +28,11 @@
                 {% endif %}
             {% endif %}
             <p class="question">{{ forloop.counter }}) {{ task.question.text }}</p>
+            
 
             {% for option in task.options.all %}
                 <label>
-                    {% if task.answers|length > 1 %}
+                    {% if task.answer_count > 1 %}
                         <input type="checkbox" name="{{task.pk}}" class="my_check" value="{{ option.pk }}">
                     {% else %}
                         <input type="radio" name="{{task.pk}}" class="my_radio" value="{{ option.pk }}">

@@ -31,18 +31,18 @@
 
                 {% endif %}
             {% endif %}
-            <p class="question">{{ forloop.counter }}) {{ task }}</p>
+            <p class="question">{{ forloop.counter }}) {{ task.question.text }}</p>
 
 			<ul>
 	            {% for option in task.options.all %}
 	                {% if option.isAnswer and option.pk|to_string in answerList|get_item:task.pk%}
-						<li class="custom-bullet-ok">{{ option }}</li>
+						<li class="custom-bullet-ok">{{ option.text }}</li>
 					{% elif option.isAnswer %}
-						<li style="color: blue">{{ option }}</li>
+						<li style="color: blue">{{ option.text }}</li>
 					{% elif option.pk|to_string in answerList|get_item:task.pk  %}
-						<li  class="custom-bullet-mistake">{{ option }}</li>
+						<li  class="custom-bullet-mistake">{{ option.text }}</li>
 					{% else %}
-						<li>{{ option }}</li>
+						<li>{{ option.text }}</li>
 					{% endif %}
 	            {% endfor %}
             </ul>
