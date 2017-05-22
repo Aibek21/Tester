@@ -134,3 +134,125 @@ def parse(request):
 
     return HttpResponse("Parse")
 
+
+
+def parse2(request):
+    file_ = open(os.path.join(settings.BASE_DIR, 'testapp/file2.txt'))
+    content = file_.read()
+    questions = re.split("#[0-9]+", content)
+
+    for i, t in enumerate(questions):
+        task = Task()
+        # task question
+        question_str = re.findall('\*!.+', t)
+        if len(question_str) > 0:
+            q = re.sub(r'\*!(\s+)?', '', question_str[0])
+            question = Question()
+            question.text = q
+            if question is not None:
+                question.save()
+                task.question = question
+
+        if task.question is not None:
+            task.save()
+
+            # options
+            options_str = re.findall('\*[^!].+', t)
+            answer_count = 0
+            for o in options_str:
+                ans = Answer()
+                
+                if '*+' not in o:
+                    ans.isAnswer = False
+                else:
+                    ans.isAnswer = True
+                    answer_count+=1
+
+                o = re.sub(r'\*\+?(\s+)?', '', o)
+                ans.text = o
+                ans.save()
+                # task.answers.add(ans)
+                task.options.add(ans)
+            task.answer_count = answer_count
+            if task.question is not None and task.options.count() > 0:
+                task.save()
+
+    tasks = Task.objects.all()
+    counter = 0
+    variantNo = 11
+    while counter < len(tasks):
+        variant = Variant()
+        variant.name = "Variant {}".format(variantNo)
+        variant.save()
+        for j in range(0, 40, 1):
+            if counter < len(tasks):
+                variant.tasks.add(tasks[counter])
+                counter += 1
+
+        variant.save()
+        variantNo += 1
+
+    return HttpResponse("Parse2")
+
+
+
+
+def parse3(request):
+    file_ = open(os.path.join(settings.BASE_DIR, 'testapp/file3.txt'))
+    content = file_.read()
+    questions = re.split("#[0-9]+", content)
+
+    for i, t in enumerate(questions):
+        task = Task()
+        # task question
+        question_str = re.findall('\*!.+', t)
+        if len(question_str) > 0:
+            q = re.sub(r'\*!(\s+)?', '', question_str[0])
+            question = Question()
+            question.text = q
+            if question is not None:
+                question.save()
+                task.question = question
+
+        if task.question is not None:
+            task.save()
+
+            # options
+            options_str = re.findall('\*[^!].+', t)
+            answer_count = 0
+            for o in options_str:
+                ans = Answer()
+                
+                if '*+' not in o:
+                    ans.isAnswer = False
+                else:
+                    ans.isAnswer = True
+                    answer_count+=1
+
+                o = re.sub(r'\*\+?(\s+)?', '', o)
+                ans.text = o
+                ans.save()
+                # task.answers.add(ans)
+                task.options.add(ans)
+            task.answer_count = answer_count
+            if task.question is not None and task.options.count() > 0:
+                task.save()
+
+    tasks = Task.objects.all()
+    counter = 0
+    variantNo = 21
+    while counter < len(tasks):
+        variant = Variant()
+        variant.name = "Variant {}".format(variantNo)
+        variant.save()
+        for j in range(0, 40, 1):
+            if counter < len(tasks):
+                variant.tasks.add(tasks[counter])
+                counter += 1
+
+        variant.save()
+        variantNo += 1
+
+    return HttpResponse("Parse3")
+
+

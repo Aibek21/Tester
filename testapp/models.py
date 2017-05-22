@@ -7,8 +7,8 @@ class Question(models.Model):
     text = models.TextField()
 
     def __str__(self):
-        return str(self.text).encode('utf-8', errors='replace')
-        # return self.text
+        # return str(self.text).encode('utf-8', errors='replace')
+        return self.text
 
 
 class Answer(models.Model):
@@ -16,8 +16,8 @@ class Answer(models.Model):
     isAnswer = models.BooleanField(default=False)
     userAnswer = False
     def __str__(self):
-        return str(self.text).encode('utf-8', errors='replace')
-        # return self.text
+        # return str(self.text).encode('utf-8', errors='replace')
+        return self.text
 
 
 
@@ -28,8 +28,8 @@ class Task(models.Model):
     # answers = models.ManyToManyField(Answer, blank=True, related_name='answers')
 
     def __str__(self):
-        return str(self.question.text).encode('utf-8', errors='replace')
-        # return self.question.text
+        # return str(self.question.text).encode('utf-8', errors='replace')
+        return self.question.text
 
 
 
