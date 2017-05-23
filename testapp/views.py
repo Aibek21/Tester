@@ -140,7 +140,9 @@ def parse2(request):
     file_ = open(os.path.join(settings.BASE_DIR, 'testapp/file2.txt'))
     content = file_.read()
     questions = re.split("#[0-9]+", content)
-
+    tasks = []
+    # prev_size = len(tasks)
+    # last_task = tasks[prev_size-1]
     for i, t in enumerate(questions):
         task = Task()
         # task question
@@ -176,8 +178,9 @@ def parse2(request):
             task.answer_count = answer_count
             if task.question is not None and task.options.count() > 0:
                 task.save()
+                tasks.append(task)
 
-    tasks = Task.objects.all()
+    # tasks = Task.objects.filter(pk>last_task.pk)
     counter = 0
     variantNo = 11
     while counter < len(tasks):
@@ -196,12 +199,11 @@ def parse2(request):
 
 
 
-
 def parse3(request):
     file_ = open(os.path.join(settings.BASE_DIR, 'testapp/file3.txt'))
     content = file_.read()
     questions = re.split("#[0-9]+", content)
-
+    tasks = []
     for i, t in enumerate(questions):
         task = Task()
         # task question
@@ -237,8 +239,9 @@ def parse3(request):
             task.answer_count = answer_count
             if task.question is not None and task.options.count() > 0:
                 task.save()
+                tasks.append(task)
 
-    tasks = Task.objects.all()
+    # tasks = Task.objects.all()
     counter = 0
     variantNo = 21
     while counter < len(tasks):
