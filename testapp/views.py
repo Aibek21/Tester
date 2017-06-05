@@ -10,7 +10,7 @@ import re
 from django.conf import settings
 import os
 from django.shortcuts import render, get_object_or_404, redirect
-import telegram
+from . import telegram
 
 def index(request):
     variants = Variant.objects.values('pk', 'name')
