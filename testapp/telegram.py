@@ -23,6 +23,6 @@ def get_updates():
     return js
 
 def send_message(text, chat_id):
-    text = urllib.pathname2url(text)
+    text = urllib.parse.quote_plus(text)
     url = URL + "sendMessage?text={}&chat_id={}".format(text, chat_id)
     get_url(url)
