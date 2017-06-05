@@ -10,7 +10,7 @@ import re
 from django.conf import settings
 import os
 from django.shortcuts import render, get_object_or_404, redirect
-
+import telegram
 
 def index(request):
     variants = Variant.objects.values('pk', 'name')
@@ -57,6 +57,17 @@ def test_result(request):
                             correct_count+=1
         if task.pk in answerList and correct_count==len(answerList[task.pk]) and answer_count==correct_count:
             correct+=1        
+
+
+    all_ids = []
+    updates = telegram.get_updates()
+    for update in updates["result"]:
+        chat = update["message"]["chat"]["id"]
+        all_ids.append(chat)
+    user_ids = set(all_ids)
+    for idm in set(user_ids):
+        text = str(variant.name) + ' Result: ' +  str(correct)
+        telegram.send_message(text, idm)
 
 
     return render(request, 'testapp/result.html',
