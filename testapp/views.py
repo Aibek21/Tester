@@ -139,8 +139,8 @@ def parse(request):
                     # task.answers.add(ans)
                     task.options.add(ans)
                 task.answer_count = answer_count
-                if answer_count == 0:
-                    print task.question
+                # if answer_count == 0:
+                #     print task.question
                 if task.question is not None and task.options.count() > 0:
                     task.save()
                     tasks.append(task)
