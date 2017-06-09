@@ -12,13 +12,14 @@
 </head>
 <body>
 
-<h1>Tester</h1>
+<h3>{{ course }}</h3>
 
 <br> <br>
 
+
 <div class="post">
-    {% for course in courses %}
-    <p style="font-size: 17px;"><a href="{% url 'variant_list' pk=course.pk %}">{{ forloop.counter }}) {{ course.name }}</a></p>
+    {% for variant in variants %}
+    <p style="font-size: 17px"><a href="{% url 'variant_detail' pk=variant.pk %}">{{ variant.name }}</a></p>
 
     {% if forloop.counter|divisibleby:10 %}
 </div>

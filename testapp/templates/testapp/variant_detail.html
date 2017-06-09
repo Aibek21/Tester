@@ -12,6 +12,8 @@
 
 <h1>{{ variant.name }}</h1>
 
+<br>
+
 <form action="{% url 'result' %}" method="post">
 
     {% csrf_token %}
@@ -24,14 +26,14 @@
                     <div role="tabpanel" class="tab-pane" id="{% widthratio forloop.counter0 5 1 %}_panel">
                 {% else %}
                     <div role="tabpanel" class="tab-pane active" id="{% widthratio forloop.counter0 5 1 %}_panel">
-
                 {% endif %}
             {% endif %}
-            <p class="question">{{ forloop.counter }}) {{ task.question.text }}</p>
+            <br><br>
+            <p style="font-size: 16px" class="question">{{ forloop.counter }}) {{ task.question.text }}</p>
             
 
             {% for option in task.options.all %}
-                <label>
+                <label style="font-size: 15px">
                     {% if task.answer_count > 1 %}
                         <input type="checkbox" name="{{task.pk}}" class="my_check" value="{{ option.pk }}">
                     {% else %}
@@ -44,9 +46,10 @@
         {% endfor %}
     </div>
     </div>
-    <input class="pull-right btn btn-success" type="submit" value="Завершить тест"/>
+    <input class="pull-right btn btn-success" type="submit" value="Посмотреть результат"/>
 </form>
 
+<br>
 
 <div>
     <ul class="nav nav-tabs" role="tablist">

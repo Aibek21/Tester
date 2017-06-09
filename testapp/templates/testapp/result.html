@@ -20,7 +20,8 @@
 
 
 
- <div class="tab-content">
+
+    <div class="tab-content">
         {% for task in result %}
             {% if forloop.counter0|divisibleby:5 %}
                 {% if forloop.counter0 != 0 %}
@@ -31,9 +32,10 @@
 
                 {% endif %}
             {% endif %}
-            <p class="question">{{ forloop.counter }}) {{ task.question.text }}</p>
+            <br><br>
+            <p style="font-size: 16px" class="question">{{ forloop.counter }}) {{ task.question.text }}</p>
 
-			<ul>
+			<ul style="font-size: 15px">
 	            {% for option in task.options.all %}
 	                {% if option.isAnswer and option.pk|to_string in answerList|get_item:task.pk%}
 						<li class="custom-bullet-ok">{{ option.text }}</li>
@@ -49,9 +51,12 @@
         {% endfor %}
     </div>
     </div>
+    <a href="{% url 'index' %}" class="pull-right btn btn-success">Завершить тест</a>
 
 
 
+
+<br>
 
 <div>
     <ul class="nav nav-tabs" role="tablist">

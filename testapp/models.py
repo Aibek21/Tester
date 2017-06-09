@@ -39,3 +39,12 @@ class Variant(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+class Course(models.Model):
+    name = models.TextField()
+    variants = models.ManyToManyField(Variant, blank=True)
+
+    def __str__(self):
+        return self.name
