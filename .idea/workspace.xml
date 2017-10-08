@@ -5,11 +5,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testapp/courses.txt" afterPath="$PROJECT_DIR$/testapp/courses.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testapp/file.txt" afterPath="$PROJECT_DIR$/testapp/file.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testapp/file2.txt" afterPath="$PROJECT_DIR$/testapp/file2.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testapp/file3.txt" afterPath="$PROJECT_DIR$/testapp/file3.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testapp/file4.txt" afterPath="$PROJECT_DIR$/testapp/file4.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testapp/file5.txt" afterPath="$PROJECT_DIR$/testapp/file5.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,7 +22,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testapp/templates/testapp/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="240">
               <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
@@ -55,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="99" column="20" lean-forward="false" selection-start-line="99" selection-start-column="13" selection-end-line="99" selection-end-column="20" />
+            <state relative-caret-position="315">
+              <caret line="124" column="50" lean-forward="false" selection-start-line="124" selection-start-column="42" selection-end-line="124" selection-end-column="50" />
               <folding>
                 <element signature="e#24#60#0" expanded="true" />
               </folding>
@@ -70,8 +66,8 @@
       <file leaf-file-name="file4.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testapp/file4.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="1822" column="10" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1825" selection-end-column="0" />
+            <state relative-caret-position="27330">
+              <caret line="1822" column="10" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1825" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -80,18 +76,18 @@
       <file leaf-file-name="file5.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testapp/file5.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11460">
+            <state relative-caret-position="10095">
               <caret line="673" column="17" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="675" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="courses.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="courses.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testapp/courses.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -100,8 +96,18 @@
       <file leaf-file-name="file.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testapp/file.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="25" column="11" lean-forward="true" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+            <state relative-caret-position="315">
+              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="file3.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testapp/file3.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -129,9 +135,10 @@
       <find>page</find>
       <find>taskid</find>
       <find>render</find>
-      <find>\*[^!].+</find>
       <find>*+</find>
       <find>#[0-9]+</find>
+      <find>\*!.+\n?.+</find>
+      <find>\*[^!].+</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -154,12 +161,12 @@
         <option value="$PROJECT_DIR$/testapp/models.py" />
         <option value="$PROJECT_DIR$/testapp/views.py" />
         <option value="$PROJECT_DIR$/testapp/templates/testapp/variant_detail.html" />
-        <option value="$PROJECT_DIR$/testapp/file3.txt" />
         <option value="$PROJECT_DIR$/testapp/file4.txt" />
         <option value="$PROJECT_DIR$/testapp/file5.txt" />
         <option value="$PROJECT_DIR$/testapp/file.txt" />
         <option value="$PROJECT_DIR$/testapp/file2.txt" />
         <option value="$PROJECT_DIR$/testapp/courses.txt" />
+        <option value="$PROJECT_DIR$/testapp/file3.txt" />
       </list>
     </option>
   </component>
@@ -189,8 +196,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -207,6 +212,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -418,7 +425,7 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20597738" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2092084" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934928" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -531,7 +538,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="32" column="19" lean-forward="false" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -740,9 +746,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <element signature="e#640#681#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -751,7 +754,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="32" column="19" lean-forward="false" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -759,7 +761,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -791,7 +792,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testapp/templates/testapp/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="240">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
@@ -799,15 +800,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testapp/file4.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="1822" column="10" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1825" selection-end-column="0" />
+        <state relative-caret-position="27330">
+          <caret line="1822" column="10" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1825" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testapp/file5.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11460">
+        <state relative-caret-position="10095">
           <caret line="673" column="17" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="675" selection-end-column="18" />
           <folding />
         </state>
@@ -817,22 +818,31 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="622">
           <caret line="3219" column="18" lean-forward="false" selection-start-line="3219" selection-start-column="18" selection-end-line="3219" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testapp/file3.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="914" column="26" lean-forward="true" selection-start-line="203" selection-start-column="0" selection-end-line="914" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testapp/file.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="25" column="11" lean-forward="true" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+        <state relative-caret-position="315">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testapp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="124" column="50" lean-forward="false" selection-start-line="124" selection-start-column="42" selection-end-line="124" selection-end-column="50" />
+          <folding>
+            <element signature="e#24#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testapp/file3.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -840,18 +850,8 @@
     <entry file="file://$PROJECT_DIR$/testapp/courses.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testapp/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="99" column="20" lean-forward="false" selection-start-line="99" selection-start-column="13" selection-end-line="99" selection-end-column="20" />
-          <folding>
-            <element signature="e#24#60#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
